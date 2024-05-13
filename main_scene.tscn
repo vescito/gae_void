@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=12 format=3 uid="uid://b6vk28hxxfcvd"]
 
+[ext_resource type="Script" path="res://Scripts/CosmonautRigidBody.gd" id="1_0uovo"]
 [ext_resource type="Texture2D" uid="uid://ca8bphf24dvkh" path="res://Sprites/cosmonaut.png" id="1_21evi"]
+[ext_resource type="Script" path="res://Scripts/Restart.gd" id="1_basae"]
 [ext_resource type="Script" path="res://Scripts/CosmonautInput.gd" id="2_poici"]
 [ext_resource type="AudioStream" uid="uid://bj2h8jfi3gppp" path="res://SFX/boop.mp3" id="3_ldud1"]
 [ext_resource type="Texture2D" uid="uid://c6qxwfjoaa1v" path="res://Sprites/asteroid.png" id="4_tiv75"]
@@ -21,44 +23,66 @@ size = Vector2(1152, 58)
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Cosmonaut" type="RigidBody2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(550, 227)
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(186, 108, 1002, 153)
 
-[node name="Sprite2D" type="Sprite2D" parent="Cosmonaut"]
+[node name="Old" type="Node" parent="."]
+
+[node name="RestartButton" type="Button" parent="Old"]
+unique_name_in_owner = true
+visible = false
+offset_left = 7.0
+offset_top = 9.0
+offset_right = 72.0
+offset_bottom = 40.0
+scale = Vector2(0.6997, 0.693213)
+text = "Restart"
+script = ExtResource("1_basae")
+
+[node name="Cosmonaut" type="RigidBody2D" parent="Old"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(566, 280)
+script = ExtResource("1_0uovo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Old/Cosmonaut"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_21evi")
 script = ExtResource("2_poici")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cosmonaut"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Old/Cosmonaut"]
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_xklh2")
 
-[node name="Boop" type="AudioStreamPlayer2D" parent="Cosmonaut"]
+[node name="Boop" type="AudioStreamPlayer2D" parent="Old/Cosmonaut"]
 unique_name_in_owner = true
 stream = ExtResource("3_ldud1")
 
-[node name="Asteroid" type="Node2D" parent="."]
-position = Vector2(282, 150)
+[node name="Asteroid" type="StaticBody2D" parent="Old"]
+visible = false
+position = Vector2(169, 477)
 
-[node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
+[node name="Sprite2D" type="Sprite2D" parent="Old/Asteroid"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_tiv75")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Old/Asteroid"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_x124i")
 
-[node name="Area" type="StaticBody2D" parent="."]
+[node name="Area" type="StaticBody2D" parent="Old"]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Old/Area"]
 position = Vector2(-23, 323)
 shape = SubResource("RectangleShape2D_sj6ew")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Old/Area"]
 position = Vector2(1176, 326.25)
 shape = SubResource("RectangleShape2D_6pjea")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Old/Area"]
 position = Vector2(576, -27)
 shape = SubResource("RectangleShape2D_u46hn")
+
+[connection signal="pressed" from="Old/RestartButton" to="Old/RestartButton" method="restartGame"]
