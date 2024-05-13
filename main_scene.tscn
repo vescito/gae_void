@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=10 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://ca8bphf24dvkh" path="res://Sprites/cosmonaut.png" id="1_21evi"]
 [ext_resource type="Script" path="res://Scripts/CosmonautInput.gd" id="2_poici"]
 [ext_resource type="AudioStream" uid="uid://bj2h8jfi3gppp" path="res://SFX/boop.mp3" id="3_ldud1"]
+[ext_resource type="Texture2D" uid="uid://c6qxwfjoaa1v" path="res://Sprites/asteroid.png" id="4_tiv75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xklh2"]
 size = Vector2(20, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x124i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sj6ew"]
 size = Vector2(50, 650)
@@ -34,6 +37,17 @@ shape = SubResource("RectangleShape2D_xklh2")
 [node name="Boop" type="AudioStreamPlayer2D" parent="Cosmonaut"]
 unique_name_in_owner = true
 stream = ExtResource("3_ldud1")
+
+[node name="Asteroid" type="Node2D" parent="."]
+position = Vector2(282, 150)
+
+[node name="Sprite2D" type="Sprite2D" parent="Asteroid"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_tiv75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_x124i")
 
 [node name="Area" type="StaticBody2D" parent="."]
 
