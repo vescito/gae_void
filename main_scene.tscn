@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=8 format=3 uid="uid://b6vk28hxxfcvd"]
 
-[ext_resource type="Texture2D" uid="uid://ca8bphf24dvkh" path="res://cosmonaut.png" id="1_21evi"]
-[ext_resource type="Script" path="res://CosmonautInput.gd" id="2_poici"]
+[ext_resource type="Texture2D" uid="uid://ca8bphf24dvkh" path="res://Sprites/cosmonaut.png" id="1_21evi"]
+[ext_resource type="Script" path="res://Scripts/CosmonautInput.gd" id="2_poici"]
+[ext_resource type="AudioStream" uid="uid://bj2h8jfi3gppp" path="res://SFX/boop.mp3" id="3_ldud1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xklh2"]
 size = Vector2(20, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj6ew"]
+size = Vector2(50, 650)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pjea"]
+size = Vector2(53, 652.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u46hn"]
+size = Vector2(1152, 58)
 
 [node name="MainScene" type="Node2D"]
 
@@ -20,3 +30,21 @@ script = ExtResource("2_poici")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cosmonaut"]
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_xklh2")
+
+[node name="Boop" type="AudioStreamPlayer2D" parent="Cosmonaut"]
+unique_name_in_owner = true
+stream = ExtResource("3_ldud1")
+
+[node name="Area" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(-23, 323)
+shape = SubResource("RectangleShape2D_sj6ew")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area"]
+position = Vector2(1176, 326.25)
+shape = SubResource("RectangleShape2D_6pjea")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area"]
+position = Vector2(576, -27)
+shape = SubResource("RectangleShape2D_u46hn")

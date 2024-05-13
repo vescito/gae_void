@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca8bphf24dvkh"
-path="res://.godot/imported/cosmonaut.png-b268a9e3b95866cf002df73ef92c465d.ctex"
+uid="uid://3k3be22lxpdb"
+path="res://.godot/imported/1920x1080.png-119a26115e1121ad11d5da1809ceaeda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cosmonaut.png"
-dest_files=["res://.godot/imported/cosmonaut.png-b268a9e3b95866cf002df73ef92c465d.ctex"]
+source_file="res://Sprites/1920x1080.png"
+dest_files=["res://.godot/imported/1920x1080.png-119a26115e1121ad11d5da1809ceaeda.ctex"]
 
 [params]
 
