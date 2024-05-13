@@ -9,6 +9,18 @@
 unique_name_in_owner = true
 points = PackedVector2Array(75, 75, 442, 127, 1000, 75)
 
+[node name="Line2D_2" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(75, 200, 1000, 200)
+
+[node name="Line2D_3" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(75, 325, 1000, 325)
+
+[node name="Line2D_4" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(75, 450, 1000, 450)
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_cu6eg")
 
