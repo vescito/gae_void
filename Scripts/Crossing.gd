@@ -4,16 +4,8 @@ extends Area2D
 @export var line2: Line2D
 @onready var connectors = %Connectors
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+signal takeTurn(l1, l2)
+
+func _on_crossing_body_entered(body):
+	emit_signal("takeTurn", line1, line2)
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func _on_Area2D_body_entered(body):
-	print("Player has entered the Area2D!")
-	if body is CollisionShape2D:
-		print("Player has entered the Area2D!")
