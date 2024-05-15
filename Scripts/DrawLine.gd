@@ -59,7 +59,7 @@ func createLine(from, to, currentArea, previousArea):
 	print(intersects)
 
 
-	if intersects == false:
+	if intersects == false && (((currentArea == "Area2D_1" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_1")) || ((currentArea == "Area2D_3" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_3")) || ((currentArea == "Area2D_4" && previousArea == "Area2D_3")||(currentArea == "Area2D_3" && previousArea == "Area2D_4"))):
 		var new_line = Line2D.new()
 		new_line.points = [from, to]
 		add_child(new_line)
