@@ -1,25 +1,122 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=10 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://LineMovement.gd" id="1_cu6eg"]
+[ext_resource type="Script" path="res://DrawLine.gd" id="1_e6rvp"]
+[ext_resource type="Script" path="res://Crossing.gd" id="1_gxbo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
+
+[sub_resource type="GDScript" id="GDScript_8xjqu"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _on_Area2D_mouse_entered():
+	print(\"trueaaa\")
+
+func _on_Area2D_mouse_exited():
+	print(false)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
+size = Vector2(925, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0372o"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_768gf"]
+size = Vector2(538, 46)
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource("1_e6rvp")
 
-[node name="Line2D_1" type="Line2D" parent="."]
+[node name="Main Lines" type="Node2D" parent="."]
+
+[node name="Crossing" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(151, 75)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../Line2D_1")
+line2 = NodePath("../../Connectors/Line2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="Line2D_1" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
-points = PackedVector2Array(75, 75, 442, 127, 1000, 75)
+position = Vector2(1, 2)
+points = PackedVector2Array(75, 75, 1000, 75)
 
-[node name="Line2D_2" type="Line2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Main Lines/Line2D_1"]
+position = Vector2(1050, 75)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D" type="Area2D" parent="Main Lines/Line2D_1"]
+script = SubResource("GDScript_8xjqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Area2D"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Line2D_2" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 200, 1000, 200)
 
-[node name="Line2D_3" type="Line2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="Main Lines/Line2D_2"]
+position = Vector2(1050, 200)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D2" type="Area2D" parent="Main Lines/Line2D_2"]
+position = Vector2(0, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Area2D2"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Line2D_3" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 325, 1000, 325)
 
-[node name="Line2D_4" type="Line2D" parent="."]
+[node name="Sprite2D3" type="Sprite2D" parent="Main Lines/Line2D_3"]
+modulate = Color(0, 0.768627, 0.47451, 1)
+position = Vector2(1050, 325)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Line2D_4" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 450, 1000, 450)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Main Lines/Line2D_4"]
+position = Vector2(1050, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Connectors" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Line2D" type="Line2D" parent="Connectors"]
+position = Vector2(1, 0)
+points = PackedVector2Array(150, 75, 150, 200)
+
+[node name="Line2D2" type="Line2D" parent="Connectors"]
+position = Vector2(2, 253)
+points = PackedVector2Array(150, 75, 150, 200)
+
+[node name="Line2D3" type="Line2D" parent="Connectors"]
+points = PackedVector2Array(250, 200, 250, 325)
+
+[node name="Line2D4" type="Line2D" parent="Connectors"]
+points = PackedVector2Array(350, 75, 350, 200)
+
+[node name="Line2D5" type="Line2D" parent="Connectors"]
+points = PackedVector2Array(350, 325, 350, 450)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_cu6eg")
@@ -27,3 +124,14 @@ script = ExtResource("1_cu6eg")
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0h7x3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_0372o")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(277, 32)
+shape = SubResource("RectangleShape2D_768gf")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
