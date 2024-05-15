@@ -48,7 +48,17 @@ func createLine(from, to, currentArea, previousArea):
 		for line in array1:
 			if(Geometry2D.segment_intersects_segment(from, to, line.points[0], line.points[1]) != null):
 				intersects = true
+	if(previousArea == "Area2D_4" || currentArea == "Area2D_4"):
+		for line in array3:
+			if(Geometry2D.segment_intersects_segment(from, to, line.points[0], line.points[1]) != null):
+				intersects = true
+	elif (previousArea == "Area2D_3" && currentArea == "Area2D_2") || (previousArea == "Area2D_2" && currentArea == "Area2D_3"):
+		for line in array2:
+			if(Geometry2D.segment_intersects_segment(from, to, line.points[0], line.points[1]) != null):
+				intersects = true
 	print(intersects)
+
+
 	if intersects == false:
 		var new_line = Line2D.new()
 		new_line.points = [from, to]
