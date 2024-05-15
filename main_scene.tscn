@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=8 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://LineMovement.gd" id="1_cu6eg"]
@@ -6,21 +6,6 @@
 [ext_resource type="Script" path="res://Crossing.gd" id="1_gxbo7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
-
-[sub_resource type="GDScript" id="GDScript_8xjqu"]
-script/source = "extends Area2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func _on_Area2D_mouse_entered():
-	print(\"trueaaa\")
-
-func _on_Area2D_mouse_exited():
-	print(false)
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
 size = Vector2(925, 20)
@@ -54,7 +39,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0h7x3")
 
 [node name="Area2D_1" type="Area2D" parent="Main Lines/Line2D_1"]
-script = SubResource("GDScript_8xjqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Area2D_1"]
 position = Vector2(537.5, 75)
@@ -71,7 +55,6 @@ texture = ExtResource("1_0h7x3")
 
 [node name="Area2D_2" type="Area2D" parent="Main Lines/Line2D_2"]
 position = Vector2(0, 125)
-script = SubResource("GDScript_8xjqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Area2D_2"]
 position = Vector2(537.5, 75)
@@ -89,7 +72,6 @@ texture = ExtResource("1_0h7x3")
 
 [node name="Area2D_3" type="Area2D" parent="Main Lines/Line2D_3"]
 position = Vector2(0, 250)
-script = SubResource("GDScript_8xjqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_3/Area2D_3"]
 position = Vector2(537.5, 75)
@@ -106,7 +88,6 @@ texture = ExtResource("1_0h7x3")
 
 [node name="Area2D_4" type="Area2D" parent="Main Lines/Line2D_4"]
 position = Vector2(0, 375)
-script = SubResource("GDScript_8xjqu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_4/Area2D_4"]
 position = Vector2(537.5, 75)
@@ -142,11 +123,11 @@ texture = ExtResource("1_0h7x3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_0372o")
 
-[connection signal="mouse_entered" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_mouse_exited"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
+[connection signal="mouse_entered" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_2"]]
+[connection signal="mouse_entered" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_3"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_3"]]
+[connection signal="mouse_entered" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_4"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_4"]]
