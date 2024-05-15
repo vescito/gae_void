@@ -3,6 +3,7 @@ extends Node2D
 var from_position = null
 var isInArea = false
 
+
 func _input(event):
 	if isInArea == true:
 		if event is InputEventMouseButton:
