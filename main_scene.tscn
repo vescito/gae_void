@@ -28,6 +28,16 @@ line2 = NodePath("../../Connectors/Area1/Line2D")
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
+[node name="Crossing2" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(151, 200)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../Connectors/Area1/Line2D")
+line2 = NodePath("../Line2D_2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing2"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
 [node name="Line2D_1" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 position = Vector2(1, 2)
@@ -46,6 +56,7 @@ shape = SubResource("RectangleShape2D_774y4")
 
 [node name="Line2D_2" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
+position = Vector2(-1, 0)
 points = PackedVector2Array(75, 200, 1000, 200)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Main Lines/Line2D_2"]
@@ -136,6 +147,8 @@ shape = SubResource("RectangleShape2D_0372o")
 
 [connection signal="body_entered" from="Main Lines/Crossing" to="Main Lines/Crossing" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Main Lines/Crossing" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/Crossing2" to="Main Lines/Crossing2" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/Crossing2" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="mouse_entered" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
 [connection signal="mouse_exited" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
 [connection signal="mouse_entered" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
