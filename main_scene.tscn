@@ -22,7 +22,7 @@ script = ExtResource("1_e6rvp")
 position = Vector2(151, 75)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../Line2D_1")
-line2 = NodePath("../../Connectors/Line2D")
+line2 = NodePath("../../Connectors/Area1/Line2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing"]
 position = Vector2(1, 0)
@@ -96,21 +96,30 @@ shape = SubResource("RectangleShape2D_774y4")
 [node name="Connectors" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Line2D" type="Line2D" parent="Connectors"]
+[node name="Area1" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D" type="Line2D" parent="Connectors/Area1"]
 position = Vector2(1, 0)
 points = PackedVector2Array(150, 75, 150, 200)
 
-[node name="Line2D2" type="Line2D" parent="Connectors"]
+[node name="Line2D4" type="Line2D" parent="Connectors/Area1"]
+points = PackedVector2Array(350, 75, 350, 200)
+
+[node name="Area2" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D3" type="Line2D" parent="Connectors/Area2"]
+points = PackedVector2Array(250, 200, 250, 325)
+
+[node name="Area3" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D2" type="Line2D" parent="Connectors/Area3"]
 position = Vector2(2, 253)
 points = PackedVector2Array(150, 75, 150, 200)
 
-[node name="Line2D3" type="Line2D" parent="Connectors"]
-points = PackedVector2Array(250, 200, 250, 325)
-
-[node name="Line2D4" type="Line2D" parent="Connectors"]
-points = PackedVector2Array(350, 75, 350, 200)
-
-[node name="Line2D5" type="Line2D" parent="Connectors"]
+[node name="Line2D5" type="Line2D" parent="Connectors/Area3"]
 points = PackedVector2Array(350, 325, 350, 450)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
