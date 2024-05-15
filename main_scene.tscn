@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
-[ext_resource type="Script" path="res://LineMovement.gd" id="1_cu6eg"]
-[ext_resource type="Script" path="res://DrawLine.gd" id="1_e6rvp"]
-[ext_resource type="Script" path="res://Crossing.gd" id="1_gxbo7"]
+[ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
+[ext_resource type="Script" path="res://Scripts/DrawLine.gd" id="1_e6rvp"]
+[ext_resource type="Script" path="res://Scripts/Crossing.gd" id="1_gxbo7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
 
