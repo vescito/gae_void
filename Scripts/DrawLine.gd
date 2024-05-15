@@ -9,6 +9,7 @@ var array1 = []
 var array2 = []
 var array3 = []
 
+var connectionPrefab = preload("res://crossing.tscn")
 
 func _input(event):
 
@@ -61,6 +62,12 @@ func createLine(from, to, currentArea, previousArea):
 
 	if intersects == false && (((currentArea == "Area2D_1" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_1")) || ((currentArea == "Area2D_3" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_3")) || ((currentArea == "Area2D_4" && previousArea == "Area2D_3")||(currentArea == "Area2D_3" && previousArea == "Area2D_4"))):
 		var new_line = Line2D.new()
+		#var connector1 = connectionPrefab.instance()
+		#connector1.position = from
+		#add_child(connector1)
+		#var connector2 = connectionPrefab.instance()
+		#connector2.position = to
+		#add_child(connector2)
 		new_line.points = [from, to]
 		add_child(new_line)
 		if previousArea == "Area2D_1" || currentArea == "Area2D_1":
