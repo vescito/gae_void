@@ -25,6 +25,7 @@ func _process(delta):
 
 func _on_Area2D_mouse_entered():
 	print("trueaaa")
-
-func _on_Area2D_mouse_exited():
-	print(false)
+	
+func _on_area_2d_mouse_exited():
+	print("SAA")
+	pass # Replace with function body.
