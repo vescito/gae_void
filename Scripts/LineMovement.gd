@@ -5,15 +5,11 @@ var current_line
 var current_target_index = 1  
 var on_line = true  
 
+
+
 func _ready():
-	var lines = [
-		%Line2D_1,
-		%Line2D_2,
-		%Line2D_3,
-		%Line2D_4
-	]
-	current_line = lines[randi() % lines.size()]
-	position = current_line.points[0]  
+	new_line()
+
 
 func _physics_process(delta):
 	if on_line:
@@ -33,3 +29,21 @@ func move_along_line(delta):
 			current_target_index += 1  
 		else:
 			on_line = false  #
+
+func new_line():
+	var lines = [
+		%Line2D_1,
+		%Line2D_2,
+		%Line2D_3,
+		%Line2D_4
+	]
+	current_line = lines[randi() % lines.size()]
+	position = current_line.points[0] 
+
+func change_line(line1, line2):
+	current_line = line2
+	position = current_line.points[0] 
+
+func _on_crossing_take_turn(l1, l2):
+	change_line(l1, l2)
+	pass # Replace with function body.
