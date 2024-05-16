@@ -171,7 +171,6 @@ texture = ExtResource("1_0h7x3")
 scale = Vector2(0.1, 0.1)
 shape = SubResource("RectangleShape2D_0372o")
 
-[connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
 [connection signal="body_entered" from="Main Lines/Crossing" to="Main Lines/Crossing" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Main Lines/Crossing" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="body_entered" from="Main Lines/Crossing2" to="Main Lines/Crossing2" method="_on_crossing_body_entered"]
