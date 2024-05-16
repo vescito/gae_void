@@ -1,29 +1,189 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=9 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
-[ext_resource type="Script" path="res://LineMovement.gd" id="1_cu6eg"]
+[ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
+[ext_resource type="Script" path="res://Scripts/DrawLine.gd" id="1_e6rvp"]
+[ext_resource type="Script" path="res://Scripts/Crossing.gd" id="1_gxbo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k68mm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
+size = Vector2(925, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0372o"]
+size = Vector2(64, 64)
 
 [node name="MainScene" type="Node2D"]
+script = ExtResource("1_e6rvp")
 
-[node name="Line2D_1" type="Line2D" parent="."]
-unique_name_in_owner = true
-points = PackedVector2Array(75, 75, 442, 127, 1000, 75)
+[node name="Main Lines" type="Node2D" parent="."]
 
-[node name="Line2D_2" type="Line2D" parent="."]
+[node name="Crossing" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(151, 75)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../Connectors/Area1/Line2D")
+line2 = NodePath("../Line2D_1")
+moveForward = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="Crossing2" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(151, 200)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../Connectors/Area1/Line2D")
+line2 = NodePath("../Line2D_2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing2"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="Line2D_1" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
+position = Vector2(1, 2)
+points = PackedVector2Array(75, 75, 1000, 75)
+
+[node name="Finish_1" type="Area2D" parent="Main Lines/Line2D_1"]
+position = Vector2(1032, 74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Finish_1"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_k68mm")
+
+[node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_1/Finish_1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D_1" type="Area2D" parent="Main Lines/Line2D_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Area2D_1"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Line2D_2" type="Line2D" parent="Main Lines"]
+unique_name_in_owner = true
+position = Vector2(-1, 0)
 points = PackedVector2Array(75, 200, 1000, 200)
 
-[node name="Line2D_3" type="Line2D" parent="."]
+[node name="Finish_2" type="Area2D" parent="Main Lines/Line2D_2"]
+position = Vector2(1032, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Finish_2"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_k68mm")
+
+[node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_2/Finish_2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D_2" type="Area2D" parent="Main Lines/Line2D_2"]
+position = Vector2(0, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Area2D_2"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Line2D_3" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 325, 1000, 325)
 
-[node name="Line2D_4" type="Line2D" parent="."]
+[node name="Finish_3" type="Area2D" parent="Main Lines/Line2D_3"]
+position = Vector2(1031, 325)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_3/Finish_3"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_k68mm")
+
+[node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_3/Finish_3"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D_3" type="Area2D" parent="Main Lines/Line2D_3"]
+position = Vector2(0, 250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_3/Area2D_3"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Line2D_4" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 450, 1000, 450)
 
+[node name="Finish_4" type="Area2D" parent="Main Lines/Line2D_4"]
+position = Vector2(1032, 447)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_4/Finish_4"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_k68mm")
+
+[node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_4/Finish_4"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0h7x3")
+
+[node name="Area2D_4" type="Area2D" parent="Main Lines/Line2D_4"]
+position = Vector2(0, 375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_4/Area2D_4"]
+position = Vector2(537.5, 75)
+shape = SubResource("RectangleShape2D_774y4")
+
+[node name="Connectors" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area1" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D" type="Line2D" parent="Connectors/Area1"]
+position = Vector2(1, 0)
+points = PackedVector2Array(150, 75, 150, 200)
+
+[node name="Line2D4" type="Line2D" parent="Connectors/Area1"]
+points = PackedVector2Array(350, 75, 350, 200)
+
+[node name="Area2" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D3" type="Line2D" parent="Connectors/Area2"]
+points = PackedVector2Array(250, 200, 250, 325)
+
+[node name="Area3" type="Node2D" parent="Connectors"]
+unique_name_in_owner = true
+
+[node name="Line2D2" type="Line2D" parent="Connectors/Area3"]
+position = Vector2(2, 253)
+points = PackedVector2Array(150, 75, 150, 200)
+
+[node name="Line2D5" type="Line2D" parent="Connectors/Area3"]
+points = PackedVector2Array(350, 325, 350, 450)
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_cu6eg")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0h7x3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("RectangleShape2D_0372o")
+
+[connection signal="body_entered" from="Main Lines/Crossing" to="Main Lines/Crossing" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/Crossing" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/Crossing2" to="Main Lines/Crossing2" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/Crossing2" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/Line2D_1/Finish_1" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
+[connection signal="body_entered" from="Main Lines/Line2D_2/Finish_2" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_2"]]
+[connection signal="body_entered" from="Main Lines/Line2D_3/Finish_3" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_3"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_3"]]
+[connection signal="body_entered" from="Main Lines/Line2D_4/Finish_4" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_4"]]
+[connection signal="mouse_exited" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_4"]]

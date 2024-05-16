@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://to82fsa6w1da"]
+
+[ext_resource type="Script" path="res://Scripts/Crossing.gd" id="1_6uqgp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
+
+[node name="Crossing" type="Area2D"]
+script = ExtResource("1_6uqgp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[connection signal="body_entered" from="." to="." method="_on_crossing_body_entered"]
