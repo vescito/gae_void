@@ -25,6 +25,7 @@ position = Vector2(151, 75)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../Connectors/Area1/Line2D")
 line2 = NodePath("../Line2D_1")
+moveForward = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing"]
 position = Vector2(1, 0)
