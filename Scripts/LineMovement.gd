@@ -28,8 +28,6 @@ func _physics_process(delta):
 		move_along_line(delta)
 
 func move_along_line(delta):
-	
-	print(moveForward)
 	var line_points = current_line.points
 	var target_index = current_target_index if moveForward else line_points.size() - 1 - current_target_index
 	var target = line_points[target_index]
@@ -61,6 +59,7 @@ func change_line(line1, line2):
 	elif current_line == line2:
 		current_line = line1
 
+# DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
 func _on_crossing_take_turn(l1, l2, move_Forward):
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
@@ -74,3 +73,14 @@ func _on_finish_body_entered(body):
 	print("ROUND FINISHED")
 	isFinished = true
 	pass # Replace with function body.
+
+
+
+# DAS HIER IST FÜR DIE GENERIERTEN LINES
+func _on_main_scene_turn(l1, l2, mf):
+	change_line(l1, l2)
+	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
+		moveForward = mf
+	else:
+		moveForward = true
+	pass 
