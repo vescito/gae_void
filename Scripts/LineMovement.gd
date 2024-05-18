@@ -23,6 +23,7 @@ func _ready():
 	new_line()
 
 
+
 func _physics_process(delta):
 	if on_line:
 		move_along_line(delta)
@@ -72,6 +73,7 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 func _on_finish_body_entered(body):
 	print("ROUND FINISHED")
 	isFinished = true
+	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
 	pass # Replace with function body.
 
 
@@ -84,3 +86,7 @@ func _on_main_scene_turn(l1, l2, mf):
 	else:
 		moveForward = true
 	pass 
+	
+	
+		
+		
