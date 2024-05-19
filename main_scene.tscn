@@ -7,6 +7,7 @@
 [ext_resource type="VideoStream" path="res://Assets/BACKGROUND-LOOP-DARK-FOREST.ogv" id="2_an6gh"]
 [ext_resource type="AudioStream" uid="uid://bnkyggm6catcl" path="res://SFX/Distant Screams Music Pack - Tiny Pack/5_Threat_1_Master.mp3" id="3_5sas1"]
 [ext_resource type="SpriteFrames" uid="uid://def6lpf4xhrgf" path="res://Assets/Animations/Animations.tres" id="4_80jq1"]
+[ext_resource type="Texture2D" uid="uid://byovfeq8lkcra" path="res://Assets/Glitch Portals/V1 (256X256)/1_000.png" id="6_67o1n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
 
@@ -14,8 +15,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
 size = Vector2(925, 20)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tjknt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0372o"]
 size = Vector2(64, 64)
@@ -106,7 +105,7 @@ position = Vector2(-2, 124)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
-frame_progress = 0.232268
+frame_progress = 0.542518
 speed_scale = 2.5
 
 [node name="Area2D_1" type="Area2D" parent="Main Lines/Line2D_1"]
@@ -153,8 +152,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_3/Finish_3"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_0h7x3")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_67o1n")
 
 [node name="Area2D_3" type="Area2D" parent="Main Lines/Line2D_3"]
 position = Vector2(0, 250)
@@ -177,7 +176,8 @@ shape = SubResource("RectangleShape2D_k68mm")
 [node name="Void4" type="AnimatedSprite2D" parent="Main Lines/Line2D_4/Finish_4"]
 position = Vector2(1, 1)
 scale = Vector2(0.4, 0.4)
-sprite_frames = SubResource("SpriteFrames_tjknt")
+sprite_frames = ExtResource("4_80jq1")
+animation = &"void"
 speed_scale = 2.5
 
 [node name="Area2D_4" type="Area2D" parent="Main Lines/Line2D_4"]
@@ -296,7 +296,7 @@ shape = SubResource("RectangleShape2D_0372o")
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"death"
-frame_progress = 0.54895
+frame_progress = 0.672843
 
 [connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
 [connection signal="body_entered" from="Main Lines/Crossing4" to="Main Lines/Crossing4" method="_on_crossing_body_entered"]
