@@ -28,9 +28,11 @@ func _ready():
 
 
 func _physics_process(delta):
+	
 	if on_line:
 		move_along_line(delta)
 		animated_player.play("walk")
+	
 
 
 

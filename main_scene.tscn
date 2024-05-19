@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=13 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
 [ext_resource type="Script" path="res://Scripts/DrawLine.gd" id="1_e6rvp"]
 [ext_resource type="Script" path="res://Scripts/Crossing.gd" id="1_gxbo7"]
 [ext_resource type="VideoStream" path="res://Assets/BACKGROUND-LOOP-DARK-FOREST.ogv" id="2_an6gh"]
+[ext_resource type="AudioStream" uid="uid://bnkyggm6catcl" path="res://SFX/Distant Screams Music Pack - Tiny Pack/5_Threat_1_Master.mp3" id="3_5sas1"]
 [ext_resource type="SpriteFrames" uid="uid://def6lpf4xhrgf" path="res://Assets/Animations/Animations.tres" id="4_80jq1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
@@ -39,6 +40,10 @@ offset_bottom = 697.0
 stream = ExtResource("2_an6gh")
 autoplay = true
 loop = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("3_5sas1")
+autoplay = true
 
 [node name="Main Lines" type="Node2D" parent="."]
 
@@ -101,7 +106,7 @@ position = Vector2(-2, 124)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
-frame_progress = 0.819301
+frame_progress = 0.232268
 speed_scale = 2.5
 
 [node name="Area2D_1" type="Area2D" parent="Main Lines/Line2D_1"]
@@ -291,7 +296,7 @@ shape = SubResource("RectangleShape2D_0372o")
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"death"
-frame_progress = 0.383835
+frame_progress = 0.54895
 
 [connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
 [connection signal="body_entered" from="Main Lines/Crossing4" to="Main Lines/Crossing4" method="_on_crossing_body_entered"]
