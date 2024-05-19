@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 var speed = 100  
 var current_line
 var current_target_index = 1  
@@ -27,6 +29,7 @@ func _ready():
 func _physics_process(delta):
 	if on_line:
 		move_along_line(delta)
+		animated_sprite.play("walk")
 
 func move_along_line(delta):
 	var line_points = current_line.points
