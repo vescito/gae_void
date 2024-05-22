@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var animated_player = $PlayerAnim
+
+
 var speed = 100  
 var current_line
 var current_target_index = 1  
@@ -23,9 +26,16 @@ func _ready():
 	new_line()
 
 
+
 func _physics_process(delta):
+	
 	if on_line:
 		move_along_line(delta)
+		animated_player.play("walk")
+	
+
+
+
 
 func move_along_line(delta):
 	var line_points = current_line.points
@@ -72,6 +82,7 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 func _on_finish_body_entered(body):
 	print("ROUND FINISHED")
 	isFinished = true
+	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
 	pass # Replace with function body.
 
 
@@ -84,3 +95,7 @@ func _on_main_scene_turn(l1, l2, mf):
 	else:
 		moveForward = true
 	pass 
+	
+	
+		
+		

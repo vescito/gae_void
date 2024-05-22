@@ -26,6 +26,7 @@ func _input(event):
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
 				if event.pressed:
+					
 					previousArea = currentArea
 					from_position = get_viewport().get_mouse_position()
 				else:
@@ -111,9 +112,9 @@ func createLine(from, to, currentArea, previousArea):
 		if(previousArea == l1_name):
 			fromInstance.line1 = l1
 		else:
-			fromInstance.line1 = l2
-		fromInstance.line2 = new_line
-		fromInstance.moveForward = true
+			fromInstance.line1 = new_line			#War davor l2 machte keinen Unterschied
+		fromInstance.line2 = l1	#War davor new_line machte keinen Unterschied
+		fromInstance.moveForward = false #War davor true
 		fromInstance.connect("takeTurn", Callable(self, "test"))
 		#fromInstance._on_crossing_body_entered.connect(test(l1, l2, true))
 		add_child(fromInstance)
@@ -122,8 +123,8 @@ func createLine(from, to, currentArea, previousArea):
 		if(currentArea == l1_name):
 			toInstance.line1 = l1
 		else:
-			toInstance.line1 = l2
-		toInstance.line2 = new_line
+			toInstance.line1 = new_line		#War davor l2 machte keinen Unterschied
+		toInstance.line2 = l1		#War davor new_line machte keinen Unterschied
 		toInstance.moveForward = false
 		toInstance.connect("takeTurn", Callable(self, "test"))
 		#toInstance._on_crossing_body_entered.connect(test(l1, l2, false))
@@ -150,5 +151,9 @@ func _on_area_2d_1_mouse_exited(extra_arg_0):
 	isInArea = false
 
 func test(l1, l2, mf):
-	print("TAKEN TURN")
+	print("TAKEN TURN VOM TEST")
+	print(l1)
+	print(l2)
+	print(mf)
+	print("Ende des Tests")
 	emit_signal("turn", line1, line2, mf)

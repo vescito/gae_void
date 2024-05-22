@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bti1lgqx0l5uy"
+path="res://.godot/imported/3_Quiet_2_Master.ogg-78ed21720148eaf44130f98f759e999d.oggvorbisstr"
+
+[deps]
+
+source_file="res://SFX/Distant Screams Music Pack - Tiny Pack/3_Quiet_2_Master.ogg"
+dest_files=["res://.godot/imported/3_Quiet_2_Master.ogg-78ed21720148eaf44130f98f759e999d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

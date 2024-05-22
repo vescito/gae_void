@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpsefo0hssenc"
+path="res://.godot/imported/1_Menu_Master.mp3-97f02131b2ab5d2708e86dd2149aeddd.mp3str"
+
+[deps]
+
+source_file="res://SFX/Distant Screams Music Pack - Tiny Pack/1_Menu_Master.mp3"
+dest_files=["res://.godot/imported/1_Menu_Master.mp3-97f02131b2ab5d2708e86dd2149aeddd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
