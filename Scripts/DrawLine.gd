@@ -9,10 +9,10 @@ var array1 = []
 var array2 = []
 var array3 = []
 
-@onready var line1 : Line2D = %Line2D_1
-@onready var line2 : Line2D = %Line2D_2
-@onready var line3 : Line2D = %Line2D_3
-@onready var line4 : Line2D = %Line2D_4
+@onready var line1 : Line2D = %LINIE_1
+@onready var line2 : Line2D = %LINIE_2
+@onready var line3 : Line2D = %LINIE_3
+@onready var line4 : Line2D = %LINIE_4
 
 @onready var player = %CharacterBody2D
 
@@ -95,7 +95,7 @@ func createLine(from, to, currentArea, previousArea):
 		for line in array2:
 			if(Geometry2D.segment_intersects_segment(from, to, line.points[0], line.points[1]) != null):
 				intersects = true
-	print(intersects)
+	#print(intersects)
 
 
 	if intersects == false && (((currentArea == "Area2D_1" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_1")) || ((currentArea == "Area2D_3" && previousArea == "Area2D_2")||(currentArea == "Area2D_2" && previousArea == "Area2D_3")) || ((currentArea == "Area2D_4" && previousArea == "Area2D_3")||(currentArea == "Area2D_3" && previousArea == "Area2D_4"))):
@@ -112,9 +112,9 @@ func createLine(from, to, currentArea, previousArea):
 		if(previousArea == l1_name):
 			fromInstance.line1 = l1
 		else:
-			fromInstance.line1 = new_line			#War davor l2 machte keinen Unterschied
-		fromInstance.line2 = l1	#War davor new_line machte keinen Unterschied
-		fromInstance.moveForward = false #War davor true
+			fromInstance.line1 = l2
+		fromInstance.line2 = new_line
+		fromInstance.moveForward = true
 		fromInstance.connect("takeTurn", Callable(self, "test"))
 		#fromInstance._on_crossing_body_entered.connect(test(l1, l2, true))
 		add_child(fromInstance)
@@ -123,8 +123,8 @@ func createLine(from, to, currentArea, previousArea):
 		if(currentArea == l1_name):
 			toInstance.line1 = l1
 		else:
-			toInstance.line1 = new_line		#War davor l2 machte keinen Unterschied
-		toInstance.line2 = l1		#War davor new_line machte keinen Unterschied
+			toInstance.line1 = l2
+		toInstance.line2 = new_line
 		toInstance.moveForward = false
 		toInstance.connect("takeTurn", Callable(self, "test"))
 		#toInstance._on_crossing_body_entered.connect(test(l1, l2, false))
@@ -140,13 +140,13 @@ func createLine(from, to, currentArea, previousArea):
 
 
 func _on_area_2d_1_mouse_entered(extra_arg_0):
-	print("Entered at: " + extra_arg_0)
+	#print("Entered at: " + extra_arg_0)
 	currentArea = extra_arg_0
 	isInArea = true
 
 
 func _on_area_2d_1_mouse_exited(extra_arg_0):
-	print("Exited at: " + extra_arg_0)
+	#print("Exited at: " + extra_arg_0)
 	currentArea = "No area"
 	isInArea = false
 
@@ -156,4 +156,5 @@ func test(l1, l2, mf):
 	print(l2)
 	print(mf)
 	print("Ende des Tests")
+	print("Über: ",line1," von/zu ",line2)
 	emit_signal("turn", line1, line2, mf)

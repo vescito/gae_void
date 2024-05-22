@@ -9,12 +9,12 @@
 [ext_resource type="SpriteFrames" uid="uid://def6lpf4xhrgf" path="res://Assets/Animations/Animations.tres" id="4_80jq1"]
 [ext_resource type="Texture2D" uid="uid://byovfeq8lkcra" path="res://Assets/Glitch Portals/V1 (256X256)/1_000.png" id="6_67o1n"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k68mm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
 size = Vector2(925, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0372o"]
 size = Vector2(64, 64)
@@ -24,61 +24,19 @@ script = ExtResource("1_e6rvp")
 
 [node name="Main Lines" type="Node2D" parent="."]
 
-[node name="Crossing4" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
-position = Vector2(350, 200)
-script = ExtResource("1_gxbo7")
-line1 = NodePath("../../Connectors/Area1/Line2D4")
-line2 = NodePath("../Line2D_2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing4"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_mfe7w")
-
-[node name="Crossing3" type="Area2D" parent="Main Lines/Crossing4" node_paths=PackedStringArray("line1", "line2")]
-position = Vector2(0, -125)
-script = ExtResource("1_gxbo7")
-line1 = NodePath("../../../Connectors/Area1/Line2D4")
-line2 = NodePath("../../Line2D_1")
-moveForward = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing4/Crossing3"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_mfe7w")
-
-[node name="Crossing2" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
-position = Vector2(150, 200)
-script = ExtResource("1_gxbo7")
-line1 = NodePath("../../Connectors/Area1/Line2D")
-line2 = NodePath("../Line2D_2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing2"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_mfe7w")
-
-[node name="Crossing" type="Area2D" parent="Main Lines/Crossing2" node_paths=PackedStringArray("line1", "line2")]
-position = Vector2(0, -125)
-script = ExtResource("1_gxbo7")
-line1 = NodePath("../../../Connectors/Area1/Line2D")
-line2 = NodePath("../../Line2D_1")
-moveForward = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing2/Crossing"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_mfe7w")
-
-[node name="Line2D_1" type="Line2D" parent="Main Lines"]
+[node name="LINIE_1" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 position = Vector2(1, 2)
 points = PackedVector2Array(75, 75, 1000, 75)
 
-[node name="Finish_1" type="Area2D" parent="Main Lines/Line2D_1"]
+[node name="Finish_1" type="Area2D" parent="Main Lines/LINIE_1"]
 position = Vector2(1032, 74)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Finish_1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_1/Finish_1"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
-[node name="Void_1" type="AnimatedSprite2D" parent="Main Lines/Line2D_1/Finish_1"]
+[node name="Void_1" type="AnimatedSprite2D" parent="Main Lines/LINIE_1/Finish_1"]
 position = Vector2(-2, 124)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
@@ -86,145 +44,187 @@ animation = &"void"
 frame_progress = 0.542518
 speed_scale = 2.5
 
-[node name="Area2D_1" type="Area2D" parent="Main Lines/Line2D_1"]
+[node name="Area2D_1" type="Area2D" parent="Main Lines/LINIE_1"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_1/Area2D_1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_1/Area2D_1"]
 position = Vector2(537.5, 75)
 shape = SubResource("RectangleShape2D_774y4")
 
-[node name="Line2D_2" type="Line2D" parent="Main Lines"]
+[node name="LINIE_2" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 points = PackedVector2Array(75, 200, 1000, 200)
 
-[node name="Finish_2" type="Area2D" parent="Main Lines/Line2D_2"]
+[node name="Finish_2" type="Area2D" parent="Main Lines/LINIE_2"]
 position = Vector2(1032, 200)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Finish_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_2/Finish_2"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
-[node name="Void2" type="AnimatedSprite2D" parent="Main Lines/Line2D_2/Finish_2"]
+[node name="Void2" type="AnimatedSprite2D" parent="Main Lines/LINIE_2/Finish_2"]
 position = Vector2(2, -123)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
 speed_scale = 2.5
 
-[node name="Area2D_2" type="Area2D" parent="Main Lines/Line2D_2"]
+[node name="Area2D_2" type="Area2D" parent="Main Lines/LINIE_2"]
 position = Vector2(0, 125)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_2/Area2D_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_2/Area2D_2"]
 position = Vector2(537.5, 75)
 shape = SubResource("RectangleShape2D_774y4")
 
-[node name="Line2D_3" type="Line2D" parent="Main Lines"]
+[node name="LINIE_3" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 325, 1000, 325)
 
-[node name="Finish_3" type="Area2D" parent="Main Lines/Line2D_3"]
+[node name="Finish_3" type="Area2D" parent="Main Lines/LINIE_3"]
 position = Vector2(1031, 325)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_3/Finish_3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_3/Finish_3"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
-[node name="FinishSprite" type="Sprite2D" parent="Main Lines/Line2D_3/Finish_3"]
+[node name="FinishSprite" type="Sprite2D" parent="Main Lines/LINIE_3/Finish_3"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_67o1n")
 
-[node name="Area2D_3" type="Area2D" parent="Main Lines/Line2D_3"]
+[node name="Area2D_3" type="Area2D" parent="Main Lines/LINIE_3"]
 position = Vector2(0, 250)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_3/Area2D_3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_3/Area2D_3"]
 position = Vector2(537.5, 75)
 shape = SubResource("RectangleShape2D_774y4")
 
-[node name="Line2D_4" type="Line2D" parent="Main Lines"]
+[node name="LINIE_4" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 points = PackedVector2Array(75, 450, 1000, 450)
 
-[node name="Finish_4" type="Area2D" parent="Main Lines/Line2D_4"]
+[node name="Finish_4" type="Area2D" parent="Main Lines/LINIE_4"]
 position = Vector2(1032, 447)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_4/Finish_4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_4/Finish_4"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
-[node name="Void4" type="AnimatedSprite2D" parent="Main Lines/Line2D_4/Finish_4"]
+[node name="Void4" type="AnimatedSprite2D" parent="Main Lines/LINIE_4/Finish_4"]
 position = Vector2(1, 1)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
 speed_scale = 2.5
 
-[node name="Area2D_4" type="Area2D" parent="Main Lines/Line2D_4"]
+[node name="Area2D_4" type="Area2D" parent="Main Lines/LINIE_4"]
 position = Vector2(0, 375)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Line2D_4/Area2D_4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_4/Area2D_4"]
 position = Vector2(537.5, 75)
 shape = SubResource("RectangleShape2D_774y4")
 
-[node name="Crossing6" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+[node name="CROSS_1_2_N1" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(150, 200)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../Connectors/Area1/Line2D")
+line2 = NodePath("../LINIE_2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_1_2_N1"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="Crossing" type="Area2D" parent="Main Lines/CROSS_1_2_N1" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(0, -125)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../../Connectors/Area1/Line2D")
+line2 = NodePath("../../LINIE_1")
+moveForward = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_1_2_N1/Crossing"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="CROSS_1_2_N2" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(350, 200)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../Connectors/Area1/Line2D4")
+line2 = NodePath("../LINIE_2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_1_2_N2"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="Crossing3" type="Area2D" parent="Main Lines/CROSS_1_2_N2" node_paths=PackedStringArray("line1", "line2")]
+position = Vector2(0, -125)
+script = ExtResource("1_gxbo7")
+line1 = NodePath("../../../Connectors/Area1/Line2D4")
+line2 = NodePath("../../LINIE_1")
+moveForward = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_1_2_N2/Crossing3"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_mfe7w")
+
+[node name="CROSS_2_3_N1" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(250, 323)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../Connectors/Area2/Line2D3")
-line2 = NodePath("../Line2D_3")
+line2 = NodePath("../LINIE_3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_2_3_N1"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
-[node name="Crossing5" type="Area2D" parent="Main Lines/Crossing6" node_paths=PackedStringArray("line1", "line2")]
+[node name="Crossing5" type="Area2D" parent="Main Lines/CROSS_2_3_N1" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(0, -125)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../../Connectors/Area2/Line2D3")
-line2 = NodePath("../../Line2D_2")
+line2 = NodePath("../../LINIE_2")
 moveForward = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing6/Crossing5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_2_3_N1/Crossing5"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
-[node name="Crossing8" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+[node name="CROSS_3_4_N1" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(150, 450)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../Connectors/Area3/Line2D6")
-line2 = NodePath("../Line2D_4")
+line2 = NodePath("../LINIE_4")
 moveForward = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_3_4_N1"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
-[node name="Crossing7" type="Area2D" parent="Main Lines/Crossing8" node_paths=PackedStringArray("line1", "line2")]
+[node name="Crossing7" type="Area2D" parent="Main Lines/CROSS_3_4_N1" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(-1, -125)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../../Connectors/Area3/Line2D6")
-line2 = NodePath("../../Line2D_3")
+line2 = NodePath("../../LINIE_3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing8/Crossing7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_3_4_N1/Crossing7"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
-[node name="Crossing10" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
+[node name="CROSS_3_4_N2" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(349, 450)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../Connectors/Area3/Line2D5")
-line2 = NodePath("../Line2D_4")
+line2 = NodePath("../LINIE_4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing10"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_3_4_N2"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
-[node name="Crossing9" type="Area2D" parent="Main Lines/Crossing10" node_paths=PackedStringArray("line1", "line2")]
+[node name="Crossing9" type="Area2D" parent="Main Lines/CROSS_3_4_N2" node_paths=PackedStringArray("line1", "line2")]
 position = Vector2(0, -125)
 script = ExtResource("1_gxbo7")
 line1 = NodePath("../../../Connectors/Area3/Line2D5")
-line2 = NodePath("../../Line2D_3")
+line2 = NodePath("../../LINIE_3")
 moveForward = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/Crossing10/Crossing9"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/CROSS_3_4_N2/Crossing9"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_mfe7w")
 
@@ -301,35 +301,35 @@ stream = ExtResource("3_5sas1")
 autoplay = true
 
 [connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing4" to="Main Lines/Crossing4" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing4" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing4/Crossing3" to="Main Lines/Crossing4/Crossing3" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing4/Crossing3" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing2" to="Main Lines/Crossing2" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing2" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing2/Crossing" to="Main Lines/Crossing2/Crossing" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing2/Crossing" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Line2D_1/Finish_1" to="CharacterBody2D" method="_on_finish_body_entered"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
-[connection signal="mouse_exited" from="Main Lines/Line2D_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
-[connection signal="body_entered" from="Main Lines/Line2D_2/Finish_2" to="CharacterBody2D" method="_on_finish_body_entered"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
-[connection signal="mouse_exited" from="Main Lines/Line2D_2/Area2D_2" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_2"]]
-[connection signal="body_entered" from="Main Lines/Line2D_3/Finish_3" to="CharacterBody2D" method="_on_finish_body_entered"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_3"]]
-[connection signal="mouse_exited" from="Main Lines/Line2D_3/Area2D_3" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_3"]]
-[connection signal="body_entered" from="Main Lines/Line2D_4/Finish_4" to="CharacterBody2D" method="_on_finish_body_entered"]
-[connection signal="mouse_entered" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_4"]]
-[connection signal="mouse_exited" from="Main Lines/Line2D_4/Area2D_4" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_4"]]
-[connection signal="body_entered" from="Main Lines/Crossing6" to="Main Lines/Crossing6" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing6" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing6/Crossing5" to="Main Lines/Crossing6/Crossing5" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing6/Crossing5" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing8" to="Main Lines/Crossing8" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing8" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing8/Crossing7" to="Main Lines/Crossing8/Crossing7" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing8/Crossing7" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing10" to="Main Lines/Crossing10" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing10" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="body_entered" from="Main Lines/Crossing10/Crossing9" to="Main Lines/Crossing10/Crossing9" method="_on_crossing_body_entered"]
-[connection signal="takeTurn" from="Main Lines/Crossing10/Crossing9" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/LINIE_1/Finish_1" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/LINIE_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
+[connection signal="mouse_exited" from="Main Lines/LINIE_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
+[connection signal="body_entered" from="Main Lines/LINIE_2/Finish_2" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/LINIE_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
+[connection signal="mouse_exited" from="Main Lines/LINIE_2/Area2D_2" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_2"]]
+[connection signal="body_entered" from="Main Lines/LINIE_3/Finish_3" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/LINIE_3/Area2D_3" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_3"]]
+[connection signal="mouse_exited" from="Main Lines/LINIE_3/Area2D_3" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_3"]]
+[connection signal="body_entered" from="Main Lines/LINIE_4/Finish_4" to="CharacterBody2D" method="_on_finish_body_entered"]
+[connection signal="mouse_entered" from="Main Lines/LINIE_4/Area2D_4" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_4"]]
+[connection signal="mouse_exited" from="Main Lines/LINIE_4/Area2D_4" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_4"]]
+[connection signal="body_entered" from="Main Lines/CROSS_1_2_N1" to="Main Lines/CROSS_1_2_N1" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_1_2_N1" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_1_2_N1/Crossing" to="Main Lines/CROSS_1_2_N1/Crossing" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_1_2_N1/Crossing" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_1_2_N2" to="Main Lines/CROSS_1_2_N2" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_1_2_N2" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_1_2_N2/Crossing3" to="Main Lines/CROSS_1_2_N2/Crossing3" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_1_2_N2/Crossing3" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_2_3_N1" to="Main Lines/CROSS_2_3_N1" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_2_3_N1" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_2_3_N1/Crossing5" to="Main Lines/CROSS_2_3_N1/Crossing5" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_2_3_N1/Crossing5" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_3_4_N1" to="Main Lines/CROSS_3_4_N1" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_3_4_N1" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_3_4_N1/Crossing7" to="Main Lines/CROSS_3_4_N1/Crossing7" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_3_4_N1/Crossing7" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_3_4_N2" to="Main Lines/CROSS_3_4_N2" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_3_4_N2" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="body_entered" from="Main Lines/CROSS_3_4_N2/Crossing9" to="Main Lines/CROSS_3_4_N2/Crossing9" method="_on_crossing_body_entered"]
+[connection signal="takeTurn" from="Main Lines/CROSS_3_4_N2/Crossing9" to="CharacterBody2D" method="_on_crossing_take_turn"]

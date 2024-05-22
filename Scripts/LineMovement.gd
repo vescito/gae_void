@@ -18,10 +18,10 @@ func _ready():
 	moveForward = true
 	isFinished = false
 	lines = [
-		%Line2D_1,
-		%Line2D_2,
-		%Line2D_3,
-		%Line2D_4
+		%LINIE_1,
+		%LINIE_2,
+		%LINIE_3,
+		%LINIE_4
 	]
 	new_line()
 
@@ -69,6 +69,14 @@ func change_line(line1, line2):
 	elif current_line == line2:
 		current_line = line1
 
+
+func _on_finish_body_entered(body):
+	print("ROUND FINISHED")
+	isFinished = true
+	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
+	pass # Replace with function body.
+
+
 # DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
 func _on_crossing_take_turn(l1, l2, move_Forward):
 	change_line(l1, l2)
@@ -77,14 +85,6 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 	else:
 		moveForward = true
 	pass # Replace with function body.
-
-
-func _on_finish_body_entered(body):
-	print("ROUND FINISHED")
-	isFinished = true
-	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
-	pass # Replace with function body.
-
 
 
 # DAS HIER IST FÜR DIE GENERIERTEN LINES
