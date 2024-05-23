@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_player = $PlayerAnim
 
 
-var speed = 125 
+var speed = 225
 var current_line
 var current_target_index = 1  
 var on_line = true  
@@ -44,20 +44,21 @@ func move_along_line(delta):
 	var direction = (target - position).normalized()
 	var movement = direction * speed * delta
 
-
 	position += movement
 
-	if position.distance_to(target) < speed * delta:
-		if moveForward:
-			if current_target_index < line_points.size() - 1:
-				current_target_index += 1
-			else:
-				on_line = false  
-		else:
-			if current_target_index > 0:
-				current_target_index -= 1
-			else:
-				on_line = false  
+	#if position.distance_to(target) < speed * delta:
+		#if moveForward:
+			#if current_target_index < line_points.size() - 1:
+				#current_target_index += 1
+			#else:
+				#on_line = false  
+				#print("offline1")
+		#else:
+			#if current_target_index > 0:
+				#current_target_index -= 1
+			#else:
+				#on_line = false  
+				#print("offline2")
 
 func new_line():
 	current_line = lines[randi() % lines.size()]
@@ -75,8 +76,9 @@ func _on_finish_body_entered(body):
 	if speed < 250:
 		speed += 15
 	$"../Mechanics".nextLevel()
+	var line = current_line
 	new_line()
-	pass # Replace with function body.
+	pass 
 
 
 # DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
@@ -92,7 +94,7 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 
 # DAS HIER IST FÜR DIE GENERIERTEN LINES
 func _on_main_scene_turn(l1, l2, mf):
-	print("Signal angekommen")
+	print("Signal agekommen")
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
 		moveForward = mf
@@ -100,5 +102,3 @@ func _on_main_scene_turn(l1, l2, mf):
 		moveForward = true
 	pass 
 	
-
-#HIER MUSS WAS VERÄNDERT WERDEN. DIE TURNS MÜSSEN IM CROSSING DURCH SIGNALE GEMACHT WERDEN, NICHT VIA DRAWLINE
