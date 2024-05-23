@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_player = $PlayerAnim
 
 
-var speed = 100  
+var speed = 150
 var current_line
 var current_target_index = 1  
 var on_line = true  
@@ -18,23 +18,18 @@ func _ready():
 	moveForward = true
 	isFinished = false
 	lines = [
-		%Line2D_1,
-		%Line2D_2,
-		%Line2D_3,
-		%Line2D_4
+		%LINIE_1,
+		%LINIE_2,
+		%LINIE_3,
+		%LINIE_4
 	]
 	new_line()
-
-
 
 func _physics_process(delta):
 	
 	if on_line:
 		move_along_line(delta)
 		animated_player.play("walk")
-	
-
-
 
 
 func move_along_line(delta):
@@ -44,24 +39,26 @@ func move_along_line(delta):
 	var direction = (target - position).normalized()
 	var movement = direction * speed * delta
 
-
 	position += movement
 
-	if position.distance_to(target) < speed * delta:
-		if moveForward:
-			if current_target_index < line_points.size() - 1:
-				current_target_index += 1
-			else:
-				on_line = false  
-		else:
-			if current_target_index > 0:
-				current_target_index -= 1
-			else:
-				on_line = false  
+	#if position.distance_to(target) < speed * delta:
+		#if moveForward:
+			#if current_target_index < line_points.size() - 1:
+				#current_target_index += 1
+			#else:
+				#on_line = false  
+				#print("offline1")
+		#else:
+			#if current_target_index > 0:
+				#current_target_index -= 1
+			#else:
+				#on_line = false  
+				#print("offline2")
 
 func new_line():
 	current_line = lines[randi() % lines.size()]
 	position = current_line.points[0] 
+	shuffleFinished()
 
 func change_line(line1, line2):
 	if current_line == line1:
@@ -71,6 +68,7 @@ func change_line(line1, line2):
 
 # DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
 func _on_crossing_take_turn(l1, l2, move_Forward):
+	print("Signal angekommen")
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
 		moveForward = move_Forward
@@ -79,16 +77,9 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 	pass # Replace with function body.
 
 
-func _on_finish_body_entered(body):
-	print("ROUND FINISHED")
-	isFinished = true
-	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
-	pass # Replace with function body.
-
-
-
 # DAS HIER IST FÜR DIE GENERIERTEN LINES
 func _on_main_scene_turn(l1, l2, mf):
+	print("Signal agekommen")
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
 		moveForward = mf
@@ -96,6 +87,39 @@ func _on_main_scene_turn(l1, l2, mf):
 		moveForward = true
 	pass 
 	
-	
-		
-		
+
+func _on_finish_1_body_entered(body, extra_arg_0):
+	print("is finished: " + str(isFinished))
+	print("BODY ENTERED")
+	if(extra_arg_0 == "bad" && isFinished == false):
+		speed = 0
+		%GameOverLabel.visible = true
+		print("GAME OVER")
+	else:
+		print("ROUND FINISHED")
+		if speed < 225:
+			speed += 15
+		$"../Mechanics".nextLevel()
+		var line = current_line
+		new_line()
+		isFinished = true
+		change_bool_after_delay()
+		print(speed)
+	pass 
+
+func shuffleFinished():
+	var nodes = [$"../Main Lines/LINIE_1/Finish_1", $"../Main Lines/LINIE_2/Finish_2", $"../Main Lines/LINIE_3/Finish_3", $"../Main Lines/LINIE_4/Finish_4"]
+	var original_positions = []
+	for node in nodes:
+		original_positions.append(node.position)
+
+	original_positions.shuffle()
+
+	for i in range(nodes.size()):
+		nodes[i].position = original_positions[i]
+
+func change_bool_after_delay() -> void:
+	await get_tree().create_timer(1.0).timeout
+	isFinished = false
+
+

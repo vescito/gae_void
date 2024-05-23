@@ -6,7 +6,11 @@ extends Area2D
 
 signal takeTurn(l1, l2, mf)
 
+func _ready():
+	self.connect("takeTurn", Callable(%CharacterBody2D, "_on_crossing_take_turn"))
+	print("Connected")
+
 func _on_crossing_body_entered(body):
-	print("Über: ",line1," von/zu ",line2)
+	#get_tree().call_group("player", "_on_crossing_take_turn")
 	emit_signal("takeTurn", line1, line2, moveForward)
-	pass # Replace with function body.
+	pass 
