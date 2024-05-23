@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=14 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
@@ -8,47 +8,48 @@
 [ext_resource type="AudioStream" uid="uid://bnkyggm6catcl" path="res://SFX/Distant Screams Music Pack - Tiny Pack/5_Threat_1_Master.mp3" id="3_5sas1"]
 [ext_resource type="SpriteFrames" uid="uid://def6lpf4xhrgf" path="res://Assets/Animations/Animations.tres" id="4_80jq1"]
 [ext_resource type="Texture2D" uid="uid://byovfeq8lkcra" path="res://Assets/Glitch Portals/V1 (256X256)/1_000.png" id="6_67o1n"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k68mm"]
+[ext_resource type="Script" path="res://Scripts/Mechanics.gd" id="9_g176c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_774y4"]
 size = Vector2(925, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k68mm"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0372o"]
-size = Vector2(64, 64)
+size = Vector2(132, 142)
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_e6rvp")
 
 [node name="Main Lines" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="LINIE_1" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
 position = Vector2(1, 2)
 points = PackedVector2Array(75, 75, 1000, 75)
 
+[node name="Area2D_1" type="Area2D" parent="Main Lines/LINIE_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_1/Area2D_1"]
+position = Vector2(537.5, 75)
+scale = Vector2(1, 0.6)
+shape = SubResource("RectangleShape2D_774y4")
+
 [node name="Finish_1" type="Area2D" parent="Main Lines/LINIE_1"]
-position = Vector2(1032, 74)
+position = Vector2(1031, 70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_1/Finish_1"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
-[node name="Void_1" type="AnimatedSprite2D" parent="Main Lines/LINIE_1/Finish_1"]
-position = Vector2(-2, 124)
+[node name="Void2" type="AnimatedSprite2D" parent="Main Lines/LINIE_1/Finish_1"]
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
-frame_progress = 0.542518
 speed_scale = 2.5
-
-[node name="Area2D_1" type="Area2D" parent="Main Lines/LINIE_1"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_1/Area2D_1"]
-position = Vector2(537.5, 75)
-shape = SubResource("RectangleShape2D_774y4")
 
 [node name="LINIE_2" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
@@ -56,14 +57,13 @@ position = Vector2(-1, 0)
 points = PackedVector2Array(75, 200, 1000, 200)
 
 [node name="Finish_2" type="Area2D" parent="Main Lines/LINIE_2"]
-position = Vector2(1032, 200)
+position = Vector2(1033, 200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_2/Finish_2"]
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="Void2" type="AnimatedSprite2D" parent="Main Lines/LINIE_2/Finish_2"]
-position = Vector2(2, -123)
 scale = Vector2(0.4, 0.4)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"void"
@@ -74,6 +74,7 @@ position = Vector2(0, 125)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_2/Area2D_2"]
 position = Vector2(537.5, 75)
+scale = Vector2(1, 0.6)
 shape = SubResource("RectangleShape2D_774y4")
 
 [node name="LINIE_3" type="Line2D" parent="Main Lines"]
@@ -96,6 +97,7 @@ position = Vector2(0, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_3/Area2D_3"]
 position = Vector2(537.5, 75)
+scale = Vector2(1, 0.6)
 shape = SubResource("RectangleShape2D_774y4")
 
 [node name="LINIE_4" type="Line2D" parent="Main Lines"]
@@ -121,6 +123,7 @@ position = Vector2(0, 375)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Lines/LINIE_4/Area2D_4"]
 position = Vector2(537.5, 75)
+scale = Vector2(1, 0.600001)
 shape = SubResource("RectangleShape2D_774y4")
 
 [node name="CROSS_1_2_N1" type="Area2D" parent="Main Lines" node_paths=PackedStringArray("line1", "line2")]
@@ -256,7 +259,7 @@ points = PackedVector2Array(350, 325, 350, 450)
 [node name="Line2D6" type="Line2D" parent="Connectors/Area3"]
 points = PackedVector2Array(150, 451, 150, 326)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 unique_name_in_owner = true
 script = ExtResource("1_cu6eg")
 
@@ -266,10 +269,11 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_0h7x3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.12, 0.12)
 shape = SubResource("RectangleShape2D_0372o")
 
 [node name="PlayerAnim" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(20, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"death"
@@ -300,10 +304,67 @@ loop = true
 stream = ExtResource("3_5sas1")
 autoplay = true
 
+[node name="UI" type="Node2D" parent="."]
+
+[node name="LevelText" type="Label" parent="UI"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 560.0
+offset_right = 221.0
+offset_bottom = 629.0
+theme_override_font_sizes/font_size = 50
+text = "LEVEL: 1"
+
+[node name="CreditsButton" type="Button" parent="UI"]
+offset_left = 840.0
+offset_top = 576.0
+offset_right = 974.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 30
+text = "CREDITS"
+
+[node name="RestartButton" type="Button" parent="UI"]
+offset_left = 992.0
+offset_top = 576.0
+offset_right = 1126.0
+offset_bottom = 626.0
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="CreditPanel" type="Panel" parent="UI"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 256.0
+offset_top = 160.0
+offset_right = 296.0
+offset_bottom = 200.0
+scale = Vector2(15.9308, 7.92)
+
+[node name="Label" type="Label" parent="UI/CreditPanel"]
+layout_mode = 0
+offset_left = 16.0695
+offset_top = 2.0202
+offset_right = 80.0695
+offset_bottom = 25.0202
+scale = Vector2(0.125678, 0.236722)
+text = "CREDITS"
+
+[node name="Button" type="Button" parent="UI/CreditPanel"]
+layout_mode = 0
+offset_left = 16.0695
+offset_top = 30.303
+offset_right = 24.0695
+offset_bottom = 38.303
+scale = Vector2(0.161372, 0.272727)
+text = "Close"
+
+[node name="Mechanics" type="Node2D" parent="."]
+script = ExtResource("9_g176c")
+
 [connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
-[connection signal="body_entered" from="Main Lines/LINIE_1/Finish_1" to="CharacterBody2D" method="_on_finish_body_entered"]
 [connection signal="mouse_entered" from="Main Lines/LINIE_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
 [connection signal="mouse_exited" from="Main Lines/LINIE_1/Area2D_1" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_1"]]
+[connection signal="body_entered" from="Main Lines/LINIE_1/Finish_1" to="CharacterBody2D" method="_on_finish_body_entered"]
 [connection signal="body_entered" from="Main Lines/LINIE_2/Finish_2" to="CharacterBody2D" method="_on_finish_body_entered"]
 [connection signal="mouse_entered" from="Main Lines/LINIE_2/Area2D_2" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_2"]]
 [connection signal="mouse_exited" from="Main Lines/LINIE_2/Area2D_2" to="." method="_on_area_2d_1_mouse_exited" binds= ["Area2D_2"]]
@@ -333,3 +394,4 @@ autoplay = true
 [connection signal="takeTurn" from="Main Lines/CROSS_3_4_N2" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="body_entered" from="Main Lines/CROSS_3_4_N2/Crossing9" to="Main Lines/CROSS_3_4_N2/Crossing9" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Main Lines/CROSS_3_4_N2/Crossing9" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="pressed" from="UI/RestartButton" to="Mechanics" method="_on_restart_button_pressed"]

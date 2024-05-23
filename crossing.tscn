@@ -4,7 +4,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfe7w"]
 
-[node name="Crossing" type="Area2D"]
+[node name="Crossing" type="Area2D" groups=["crossing"]]
 script = ExtResource("1_6uqgp")
 moveForward = true
 

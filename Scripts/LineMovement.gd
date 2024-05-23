@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_player = $PlayerAnim
 
 
-var speed = 100  
+var speed = 125 
 var current_line
 var current_target_index = 1  
 var on_line = true  
@@ -72,13 +72,16 @@ func change_line(line1, line2):
 
 func _on_finish_body_entered(body):
 	print("ROUND FINISHED")
-	isFinished = true
-	speed = 0		# Sonst läuft er immer weiter wenn man eine Brücke neben dem Ziel stellt
+	if speed < 250:
+		speed += 15
+	$"../Mechanics".nextLevel()
+	new_line()
 	pass # Replace with function body.
 
 
 # DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
 func _on_crossing_take_turn(l1, l2, move_Forward):
+	print("Signal angekommen")
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
 		moveForward = move_Forward
@@ -89,6 +92,7 @@ func _on_crossing_take_turn(l1, l2, move_Forward):
 
 # DAS HIER IST FÜR DIE GENERIERTEN LINES
 func _on_main_scene_turn(l1, l2, mf):
+	print("Signal angekommen")
 	change_line(l1, l2)
 	if!(current_line == lines[0] || current_line == lines[1] || current_line == lines[2] || current_line == lines[3]):
 		moveForward = mf
@@ -96,6 +100,5 @@ func _on_main_scene_turn(l1, l2, mf):
 		moveForward = true
 	pass 
 	
-	
-		
-		
+
+#HIER MUSS WAS VERÄNDERT WERDEN. DIE TURNS MÜSSEN IM CROSSING DURCH SIGNALE GEMACHT WERDEN, NICHT VIA DRAWLINE

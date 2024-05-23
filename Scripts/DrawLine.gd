@@ -113,11 +113,15 @@ func createLine(from, to, currentArea, previousArea):
 			fromInstance.line1 = l1
 		else:
 			fromInstance.line1 = l2
+		print("l1: " + l1.name)
+		print("l2: " + l2.name)
+		print("New line: " + new_line.name)
 		fromInstance.line2 = new_line
 		fromInstance.moveForward = true
-		fromInstance.connect("takeTurn", Callable(self, "test"))
+		fromInstance.connect("takeTurn", Callable(%CharacterBody2D, "_on_crossing_take_turn"))
+		#fromInstance.connect("takeTurn", Callable(self, "test"))
 		#fromInstance._on_crossing_body_entered.connect(test(l1, l2, true))
-		add_child(fromInstance)
+		%"Main Lines".add_child(fromInstance)
 		var toInstance = connectionPrefab.instantiate()
 		toInstance.position = to
 		if(currentArea == l1_name):
@@ -126,10 +130,11 @@ func createLine(from, to, currentArea, previousArea):
 			toInstance.line1 = l2
 		toInstance.line2 = new_line
 		toInstance.moveForward = false
-		toInstance.connect("takeTurn", Callable(self, "test"))
+		toInstance.connect("takeTurn", Callable(%CharacterBody2D, "_on_crossing_take_turn"))
+		#toInstance.connect("takeTurn", Callable(self, "test"))
 		#toInstance._on_crossing_body_entered.connect(test(l1, l2, false))
-		add_child(toInstance)
-		add_child(new_line)
+		%"Main Lines".add_child(toInstance)
+		%"Main Lines".add_child(new_line)
 		if previousArea == "Area2D_1" || currentArea == "Area2D_1":
 			array1.append(new_line)
 		elif previousArea == "Area2D_4" || currentArea == "Area2D_4":
@@ -150,11 +155,11 @@ func _on_area_2d_1_mouse_exited(extra_arg_0):
 	currentArea = "No area"
 	isInArea = false
 
-func test(l1, l2, mf):
-	print("TAKEN TURN VOM TEST")
-	print(l1)
-	print(l2)
-	print(mf)
-	print("Ende des Tests")
-	print("Über: ",line1," von/zu ",line2)
-	emit_signal("turn", line1, line2, mf)
+#func test(l1, l2, mf):
+	#print("TAKEN TURN VOM TEST")
+	#print(l1)
+	#print(l2)
+	#print(mf)
+	#print("Ende des Tests")
+	#print("Über: ",line1," von/zu ",line2)
+	#emit_signal("turn", line1, line2, mf)
