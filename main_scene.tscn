@@ -399,4 +399,6 @@ lines = [NodePath("../Connectors/Area1/Line2D"), NodePath("../Connectors/Area1/L
 [connection signal="takeTurn" from="Connectors/Area3/Line2D6/CROSS_3_4_N1" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="body_entered" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="CharacterBody2D" method="_on_crossing_take_turn"]
+[connection signal="pressed" from="UI/CreditsButton" to="Mechanics" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="UI/RestartButton" to="Mechanics" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/CreditPanel/Button" to="Mechanics" method="_on_button_pressed"]

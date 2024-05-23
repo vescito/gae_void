@@ -30,3 +30,14 @@ func _on_restart_button_pressed():
 
 func nextLevel():
 	level+=1
+
+func _on_credits_button_pressed():
+	$"../UI/CreditPanel".visible = true
+	get_tree().paused = true
+	pass # Replace with function body.
+
+
+func _on_button_pressed():
+	$"../UI/CreditPanel".visible = false
+	get_tree().paused = false
+	pass # Replace with function body.

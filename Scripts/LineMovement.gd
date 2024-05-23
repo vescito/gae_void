@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_player = $PlayerAnim
 
 
-var speed = 125
+var speed = 150
 var current_line
 var current_target_index = 1  
 var on_line = true  
@@ -97,7 +97,7 @@ func _on_finish_1_body_entered(body, extra_arg_0):
 		print("GAME OVER")
 	else:
 		print("ROUND FINISHED")
-		if speed < 200:
+		if speed < 225:
 			speed += 15
 		$"../Mechanics".nextLevel()
 		var line = current_line
