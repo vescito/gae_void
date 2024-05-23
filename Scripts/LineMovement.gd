@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_player = $PlayerAnim
 
 
-var speed = 225
+var speed = 125
 var current_line
 var current_target_index = 1  
 var on_line = true  
@@ -25,16 +25,11 @@ func _ready():
 	]
 	new_line()
 
-
-
 func _physics_process(delta):
 	
 	if on_line:
 		move_along_line(delta)
 		animated_player.play("walk")
-	
-
-
 
 
 func move_along_line(delta):
@@ -63,23 +58,13 @@ func move_along_line(delta):
 func new_line():
 	current_line = lines[randi() % lines.size()]
 	position = current_line.points[0] 
+	shuffleFinished()
 
 func change_line(line1, line2):
 	if current_line == line1:
 		current_line = line2
 	elif current_line == line2:
 		current_line = line1
-
-
-func _on_finish_body_entered(body):
-	print("ROUND FINISHED")
-	if speed < 250:
-		speed += 15
-	$"../Mechanics".nextLevel()
-	var line = current_line
-	new_line()
-	pass 
-
 
 # DAS HIER IST FÜR DIE NICHT GENERIERTEN LINES
 func _on_crossing_take_turn(l1, l2, move_Forward):
@@ -102,3 +87,39 @@ func _on_main_scene_turn(l1, l2, mf):
 		moveForward = true
 	pass 
 	
+
+func _on_finish_1_body_entered(body, extra_arg_0):
+	print("is finished: " + str(isFinished))
+	print("BODY ENTERED")
+	if(extra_arg_0 == "bad" && isFinished == false):
+		speed = 0
+		%GameOverLabel.visible = true
+		print("GAME OVER")
+	else:
+		print("ROUND FINISHED")
+		if speed < 200:
+			speed += 15
+		$"../Mechanics".nextLevel()
+		var line = current_line
+		new_line()
+		isFinished = true
+		change_bool_after_delay()
+		print(speed)
+	pass 
+
+func shuffleFinished():
+	var nodes = [$"../Main Lines/LINIE_1/Finish_1", $"../Main Lines/LINIE_2/Finish_2", $"../Main Lines/LINIE_3/Finish_3", $"../Main Lines/LINIE_4/Finish_4"]
+	var original_positions = []
+	for node in nodes:
+		original_positions.append(node.position)
+
+	original_positions.shuffle()
+
+	for i in range(nodes.size()):
+		nodes[i].position = original_positions[i]
+
+func change_bool_after_delay() -> void:
+	await get_tree().create_timer(1.0).timeout
+	isFinished = false
+
+
