@@ -4,9 +4,13 @@ var level : int
 
 @onready var levelText : Label = %LevelText
 @export var lines = []
+@export var tilemaps = []
+
+var currentTileMapIndex : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	currentTileMapIndex = 0
 	for line in lines:
 		var node = get_node(line)
 		print(node.name)
@@ -29,6 +33,10 @@ func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
 
 func nextLevel():
+	currentTileMapIndex+=1
+	if(currentTileMapIndex >2):
+		currentTileMapIndex = 0
+	setTileMapActive(currentTileMapIndex)
 	level+=1
 
 func _on_credits_button_pressed():
@@ -41,3 +49,15 @@ func _on_button_pressed():
 	$"../UI/CreditPanel".visible = false
 	get_tree().paused = false
 	pass # Replace with function body.
+
+func setTileMapActive(index):
+	get_node(tilemaps[index]).visible = true
+	if(index == 0):
+		get_node(tilemaps[1]).visible = false
+		get_node(tilemaps[2]).visible = false
+	elif (index == 1):
+		get_node(tilemaps[0]).visible = false
+		get_node(tilemaps[2]).visible = false
+	else:
+		get_node(tilemaps[0]).visible = false
+		get_node(tilemaps[1]).visible = false
