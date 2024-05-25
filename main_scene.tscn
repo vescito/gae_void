@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=16 format=3 uid="uid://b6vk28hxxfcvd"]
 
 [ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ca6fwet08genp" path="res://Assets/Glitch Portals/V2 (256x256)/1_000.png" id="2_bqqg5"]
 [ext_resource type="AudioStream" uid="uid://bnkyggm6catcl" path="res://SFX/Distant Screams Music Pack - Tiny Pack/5_Threat_1_Master.mp3" id="3_5sas1"]
 [ext_resource type="SpriteFrames" uid="uid://def6lpf4xhrgf" path="res://Assets/Animations/Animations.tres" id="4_80jq1"]
+[ext_resource type="Script" path="res://Void.gd" id="5_lceed"]
 [ext_resource type="Texture2D" uid="uid://byovfeq8lkcra" path="res://Assets/Glitch Portals/V1 (256X256)/1_000.png" id="6_67o1n"]
 [ext_resource type="Script" path="res://Scripts/Mechanics.gd" id="9_g176c"]
 
@@ -272,6 +273,26 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("4_80jq1")
 animation = &"death"
 frame_progress = 0.672843
+
+[node name="Void" type="CharacterBody2D" parent="." groups=["player"]]
+unique_name_in_owner = true
+script = ExtResource("5_lceed")
+
+[node name="Sprite2D" type="Sprite2D" parent="Void"]
+visible = false
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Void"]
+scale = Vector2(0.12, 0.12)
+shape = SubResource("RectangleShape2D_0372o")
+
+[node name="PlayerAnim" type="AnimatedSprite2D" parent="Void"]
+position = Vector2(20, 0)
+scale = Vector2(2.5, 2.5)
+sprite_frames = ExtResource("4_80jq1")
+animation = &"death"
+frame_progress = 0.672843
+flip_v = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
