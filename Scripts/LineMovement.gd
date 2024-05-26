@@ -58,7 +58,6 @@ func move_along_line(delta):
 func new_line():
 	current_line = lines[randi() % lines.size()]
 	position = current_line.points[0] 
-	shuffleFinished()
 
 func change_line(line1, line2):
 	if current_line == line1:
@@ -89,6 +88,7 @@ func _on_main_scene_turn(l1, l2, mf):
 	
 
 func _on_finish_1_body_entered(body, extra_arg_0):
+	new_line()
 	print("is finished: " + str(isFinished))
 	print("BODY ENTERED")
 	if(extra_arg_0 == "bad" && isFinished == false):
@@ -98,12 +98,10 @@ func _on_finish_1_body_entered(body, extra_arg_0):
 		if speed < 200:
 			speed += 10
 		var line = current_line
-		change_level_after_delay()
-		new_line()
+		$"../Mechanics".nextLevel()
 		isFinished = true
 		change_bool_after_delay()
-		print(speed)
-	pass 
+		change_finish_after_delay()
 
 func gameOver():
 		speed = 0
@@ -111,22 +109,25 @@ func gameOver():
 		print("GAME OVER")
 
 func shuffleFinished():
+	#var colliders = [$"../Main Lines/LINIE_1/Finish_1/CollisionShape2D", $"../Main Lines/LINIE_2/Finish_2/CollisionShape2D", $"../Main Lines/LINIE_3/Finish_3/CollisionShape2D", $"../Main Lines/LINIE_4/Finish_4/CollisionShape2D"]
+	#for node in colliders:
+	#	node.disabled = true
 	var nodes = [$"../Main Lines/LINIE_1/Finish_1", $"../Main Lines/LINIE_2/Finish_2", $"../Main Lines/LINIE_3/Finish_3", $"../Main Lines/LINIE_4/Finish_4"]
 	var original_positions = []
 	for node in nodes:
 		original_positions.append(node.position)
 
 	original_positions.shuffle()
-
 	for i in range(nodes.size()):
 		nodes[i].position = original_positions[i]
+	#for node in colliders:
+	#	node.disabled = false
 
 func change_bool_after_delay() -> void:
 	await get_tree().create_timer(1.0).timeout
 	isFinished = false
 
-func change_level_after_delay() -> void:
-	await get_tree().create_timer(0.1).timeout
-	$"../Mechanics".nextLevel()
-
+func change_finish_after_delay() -> void:
+	await get_tree().create_timer(0.01).timeout
+	shuffleFinished()
 
