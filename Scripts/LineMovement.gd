@@ -92,9 +92,7 @@ func _on_finish_1_body_entered(body, extra_arg_0):
 	print("is finished: " + str(isFinished))
 	print("BODY ENTERED")
 	if(extra_arg_0 == "bad" && isFinished == false):
-		speed = 0
-		%GameOverLabel.visible = true
-		print("GAME OVER")
+		gameOver()
 	else:
 		print("ROUND FINISHED")
 		if speed < 225:
@@ -106,6 +104,11 @@ func _on_finish_1_body_entered(body, extra_arg_0):
 		change_bool_after_delay()
 		print(speed)
 	pass 
+
+func gameOver():
+		speed = 0
+		%GameOverLabel.visible = true
+		print("GAME OVER")
 
 func shuffleFinished():
 	var nodes = [$"../Main Lines/LINIE_1/Finish_1", $"../Main Lines/LINIE_2/Finish_2", $"../Main Lines/LINIE_3/Finish_3", $"../Main Lines/LINIE_4/Finish_4"]
