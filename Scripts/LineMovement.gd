@@ -97,8 +97,8 @@ func _on_finish_1_body_entered(body, extra_arg_0):
 		print("ROUND FINISHED")
 		if speed < 225:
 			speed += 15
-		$"../Mechanics".nextLevel()
 		var line = current_line
+		change_level_after_delay()
 		new_line()
 		isFinished = true
 		change_bool_after_delay()
@@ -124,5 +124,9 @@ func shuffleFinished():
 func change_bool_after_delay() -> void:
 	await get_tree().create_timer(1.0).timeout
 	isFinished = false
+
+func change_level_after_delay() -> void:
+	await get_tree().create_timer(0.1).timeout
+	$"../Mechanics".nextLevel()
 
 

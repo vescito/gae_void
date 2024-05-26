@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5ar23sbv3uo8"
+path="res://.godot/imported/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music.mp3-517b70ef01925c4d26fcfd86f3f6e4fc.mp3str"
+
+[deps]
+
+source_file="res://SFX/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music.mp3"
+dest_files=["res://.godot/imported/Density & Time - MAZE ♫ NO COPYRIGHT 8-bit Music.mp3-517b70ef01925c4d26fcfd86f3f6e4fc.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
