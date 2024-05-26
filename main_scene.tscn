@@ -967,7 +967,6 @@ animation = &"death"
 frame_progress = 0.672843
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -979,9 +978,18 @@ stream = ExtResource("9_xptnv")
 volume_db = -10.0
 autoplay = true
 
-[node name="UI" type="Node2D" parent="."]
+[node name="Mechanics" type="Node2D" parent="."]
+script = ExtResource("9_g176c")
+lines = [NodePath("../Connectors/Area1/Line2D"), NodePath("../Connectors/Area1/Line2D4"), NodePath("../Connectors/Area2/Line2D3"), NodePath("../Connectors/Area3/Line2D5"), NodePath("../Connectors/Area3/Line2D6")]
+tilemaps = [NodePath("../Tilemaps/TileMap_1"), NodePath("../Tilemaps/TileMap_2"), NodePath("../Tilemaps/TileMap_3")]
 
-[node name="LevelText" type="Label" parent="UI"]
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelText" type="Label" parent="Control2"]
 unique_name_in_owner = true
 offset_left = 24.0
 offset_top = 560.0
@@ -990,15 +998,7 @@ offset_bottom = 629.0
 theme_override_font_sizes/font_size = 50
 text = "LEVEL: 1"
 
-[node name="CreditsButton" type="Button" parent="UI"]
-offset_left = 840.0
-offset_top = 576.0
-offset_right = 974.0
-offset_bottom = 626.0
-theme_override_font_sizes/font_size = 30
-text = "CREDITS"
-
-[node name="RestartButton" type="Button" parent="UI"]
+[node name="RestartButton" type="Button" parent="Control2"]
 offset_left = 992.0
 offset_top = 576.0
 offset_right = 1126.0
@@ -1006,34 +1006,7 @@ offset_bottom = 626.0
 theme_override_font_sizes/font_size = 30
 text = "RESTART"
 
-[node name="CreditPanel" type="Panel" parent="UI"]
-visible = false
-modulate = Color(0, 0, 0, 1)
-offset_left = 256.0
-offset_top = 160.0
-offset_right = 296.0
-offset_bottom = 200.0
-scale = Vector2(15.9308, 7.92)
-
-[node name="Label" type="Label" parent="UI/CreditPanel"]
-layout_mode = 0
-offset_left = 16.0695
-offset_top = 2.0202
-offset_right = 80.0695
-offset_bottom = 25.0202
-scale = Vector2(0.125678, 0.236722)
-text = "CREDITS"
-
-[node name="Button" type="Button" parent="UI/CreditPanel"]
-layout_mode = 0
-offset_left = 16.0695
-offset_top = 30.303
-offset_right = 24.0695
-offset_bottom = 38.303
-scale = Vector2(0.161372, 0.272727)
-text = "Close"
-
-[node name="GameOverLabel" type="Label" parent="UI"]
+[node name="GameOverLabel" type="Label" parent="Control2"]
 unique_name_in_owner = true
 visible = false
 offset_left = 344.0
@@ -1042,11 +1015,6 @@ offset_right = 804.0
 offset_bottom = 374.0
 theme_override_font_sizes/font_size = 80
 text = "GAME OVER"
-
-[node name="Mechanics" type="Node2D" parent="."]
-script = ExtResource("9_g176c")
-lines = [NodePath("../Connectors/Area1/Line2D"), NodePath("../Connectors/Area1/Line2D4"), NodePath("../Connectors/Area2/Line2D3"), NodePath("../Connectors/Area3/Line2D5"), NodePath("../Connectors/Area3/Line2D6")]
-tilemaps = [NodePath("../Tilemaps/TileMap_1"), NodePath("../Tilemaps/TileMap_2"), NodePath("../Tilemaps/TileMap_3")]
 
 [connection signal="turn" from="." to="CharacterBody2D" method="_on_main_scene_turn"]
 [connection signal="mouse_entered" from="Main Lines/LINIE_1/Area2D_1" to="." method="_on_area_2d_1_mouse_entered" binds= ["Area2D_1"]]
@@ -1081,6 +1049,4 @@ tilemaps = [NodePath("../Tilemaps/TileMap_1"), NodePath("../Tilemaps/TileMap_2")
 [connection signal="takeTurn" from="Connectors/Area3/Line2D6/CROSS_3_4_N1" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="body_entered" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="CharacterBody2D" method="_on_crossing_take_turn"]
-[connection signal="pressed" from="UI/CreditsButton" to="Mechanics" method="_on_credits_button_pressed"]
-[connection signal="pressed" from="UI/RestartButton" to="Mechanics" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="UI/CreditPanel/Button" to="Mechanics" method="_on_button_pressed"]
+[connection signal="pressed" from="Control2/RestartButton" to="Mechanics" method="_on_restart_button_pressed"]

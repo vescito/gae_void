@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4pb4xs20m3ol"]
+
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_lfc5s"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_lfc5s")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CreditsButton" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 336.0
+offset_right = 768.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 40
+text = "Credits"
+
+[node name="PlayButton" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 200.0
+offset_right = 768.0
+offset_bottom = 304.0
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CreditPanel" type="Panel" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 108.0
+offset_top = 76.0
+offset_right = 1004.0
+offset_bottom = 977.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.497)
+
+[node name="LevelText2" type="Label" parent="Control"]
+unique_name_in_owner = true
+offset_left = 160.0
+offset_top = 96.0
+offset_right = 992.0
+offset_bottom = 165.0
+theme_override_font_sizes/font_size = 50
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelText3" type="Label" parent="Control"]
+unique_name_in_owner = true
+offset_left = 160.0
+offset_top = 184.0
+offset_right = 992.0
+offset_bottom = 456.0
+theme_override_font_sizes/font_size = 20
+text = "This game was created by:
+Niels Kochert
+Philipp Mestenhauser
+
+Assets:
+Tileset:
+Micro Roguelike by kenney.nl
+Music:
+Density & Time - MAZE"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CreditsButton2" type="Button" parent="Control"]
+offset_left = 512.0
+offset_top = 472.0
+offset_right = 640.0
+offset_bottom = 522.0
+theme_override_font_sizes/font_size = 30
+text = "Close"
+
+[connection signal="pressed" from="Control2/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Control2/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Control/CreditsButton2" to="." method="_on_credits_button_2_pressed"]

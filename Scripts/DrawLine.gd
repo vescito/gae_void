@@ -191,7 +191,7 @@ func spawn_voids_on_lines(line: Line2D, void_count: int):
 		var position = get_random_point_on_line(line)
 		var instance = instancevoid.instantiate()
 		instance.position = position
-		add_child(instance)
+		%"Main Lines".add_child(instance)
 		instance.connect("endGame", Callable(%CharacterBody2D, "gameOver"))
 		
 #func test(l1, l2, mf):
