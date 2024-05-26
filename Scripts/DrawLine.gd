@@ -47,8 +47,25 @@ func _ready():
 		array2.append(child)
 	for child in area3.get_children():
 		array3.append(child)
-	spawn_voids_on_lines(line1, 1)  
-	spawn_voids_on_lines(line2, 1)  
+	
+	var i = int(randf_range(0, 4))
+	var j = int(randf_range(0, 4))
+	if(i == 0):
+		spawn_voids_on_lines(line1, 1)  
+	elif(i == 1):
+		spawn_voids_on_lines(line2, 1)  
+	elif(i == 2):
+		spawn_voids_on_lines(line3, 1)  
+	else:
+		spawn_voids_on_lines(line4, 1)  
+	if(j == 0):
+		spawn_voids_on_lines(line1, 1)  
+	elif(j == 1):
+		spawn_voids_on_lines(line2, 1)  
+	elif(j == 2):
+		spawn_voids_on_lines(line3, 1)  
+	else:
+		spawn_voids_on_lines(line4, 1)  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -162,9 +179,12 @@ func get_random_point_on_line(linie: Line2D) -> Vector2:
 	print(linie)
 	var start_point = linie.get_point_position(0)
 	var end_point = linie.get_point_position(1)
+	
+	var middle_point = start_point.lerp(end_point, 0.5)
+	var middle_to_end_point = middle_point.lerp(end_point, 0.5)
 
 	var t = randf()  # Random value between 0 and 1
-	return start_point.lerp(end_point, t)
+	return middle_point.lerp(middle_to_end_point, t)
 
 func spawn_voids_on_lines(line: Line2D, void_count: int):
 	for i in range(void_count):
