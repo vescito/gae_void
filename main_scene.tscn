@@ -1,12 +1,13 @@
-[gd_scene load_steps=106 format=3 uid="uid://b6vk28hxxfcvd"]
+[gd_scene load_steps=107 format=3 uid="uid://b6vk28hxxfcvd"]
 
-[ext_resource type="Texture2D" uid="uid://buf4l3wiwyq41" path="res://icon.svg" id="1_0h7x3"]
 [ext_resource type="Script" path="res://Scripts/LineMovement.gd" id="1_cu6eg"]
 [ext_resource type="Script" path="res://Scripts/DrawLine.gd" id="1_e6rvp"]
 [ext_resource type="Script" path="res://Scripts/Crossing.gd" id="1_gxbo7"]
 [ext_resource type="Texture2D" uid="uid://ca6fwet08genp" path="res://Assets/Glitch Portals/V2 (256x256)/1_000.png" id="2_bqqg5"]
 [ext_resource type="Texture2D" uid="uid://b2nxeer10vhga" path="res://Assets/kenney assets/Tilemap/colored_tilemap_packed.png" id="2_dibl6"]
-[ext_resource type="Texture2D" uid="uid://byovfeq8lkcra" path="res://Assets/Glitch Portals/V1 (256X256)/1_000.png" id="6_67o1n"]
+[ext_resource type="Texture2D" uid="uid://c47vgfd5tel8f" path="res://Assets/void.png" id="3_t5yim"]
+[ext_resource type="Texture2D" uid="uid://cmbap1agoejta" path="res://Assets/finish.png" id="4_aapa0"]
+[ext_resource type="Texture2D" uid="uid://bcfcchs3d7brq" path="res://Assets/kenney assets/Tiles/Colored/tile_0004.png" id="7_8nqcq"]
 [ext_resource type="Texture2D" uid="uid://c0hossjqk0v2l" path="res://Assets/Glitch Portals/V2 (256x256)/1_001.png" id="8_r56kb"]
 [ext_resource type="Texture2D" uid="uid://dpyukhihyo2k5" path="res://Assets/Glitch Portals/V2 (256x256)/1_002.png" id="9_a3y5g"]
 [ext_resource type="Script" path="res://Scripts/Mechanics.gd" id="9_g176c"]
@@ -739,8 +740,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Main Lines/LINIE_1/Finish_1"]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_bqqg5")
+scale = Vector2(10, 10)
+texture = ExtResource("3_t5yim")
 
 [node name="LINIE_2" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
@@ -763,8 +764,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Main Lines/LINIE_2/Finish_2"]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("6_67o1n")
+scale = Vector2(10, 10)
+texture = ExtResource("4_aapa0")
 
 [node name="LINIE_3" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
@@ -786,8 +787,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Main Lines/LINIE_3/Finish_3"]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_bqqg5")
+scale = Vector2(10, 10)
+texture = ExtResource("3_t5yim")
 
 [node name="LINIE_4" type="Line2D" parent="Main Lines"]
 unique_name_in_owner = true
@@ -809,8 +810,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_k68mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Main Lines/LINIE_4/Finish_4"]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_bqqg5")
+scale = Vector2(10, 10)
+texture = ExtResource("3_t5yim")
 
 [node name="Connectors" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -950,15 +951,15 @@ unique_name_in_owner = true
 script = ExtResource("1_cu6eg")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-visible = false
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_0h7x3")
+scale = Vector2(5, 5)
+texture = ExtResource("7_8nqcq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 scale = Vector2(0.12, 0.12)
 shape = SubResource("RectangleShape2D_0372o")
 
 [node name="PlayerAnim" type="AnimatedSprite2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(20, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8jn3")
