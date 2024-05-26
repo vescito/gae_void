@@ -16,6 +16,8 @@ var array3 = []
 
 @onready var player = %CharacterBody2D
 
+var instancevoid = preload("res://void.tscn")
+
 var connectionPrefab = preload("res://crossing.tscn")
 
 signal turn(l1, l2, mf)
@@ -45,7 +47,8 @@ func _ready():
 		array2.append(child)
 	for child in area3.get_children():
 		array3.append(child)
-
+	spawn_voids_on_lines(line1, 1)  
+	spawn_voids_on_lines(line2, 1)  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -155,6 +158,20 @@ func _on_area_2d_1_mouse_exited(extra_arg_0):
 	currentArea = "No area"
 	isInArea = false
 
+func get_random_point_on_line(linie: Line2D) -> Vector2:
+	print(linie)
+	var start_point = linie.get_point_position(0)
+	var end_point = linie.get_point_position(1)
+
+	var t = randf()  # Random value between 0 and 1
+	return start_point.lerp(end_point, t)
+
+func spawn_voids_on_lines(line: Line2D, void_count: int):
+	for i in range(void_count):
+		var position = get_random_point_on_line(line)
+		var instance = instancevoid.instantiate()
+		instance.position = position
+		add_child(instance)
 #func test(l1, l2, mf):
 	#print("TAKEN TURN VOM TEST")
 	#print(l1)
