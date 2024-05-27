@@ -5,6 +5,7 @@ var level : int
 @onready var levelText : Label = %LevelText
 @export var lines = []
 @export var tilemaps = []
+@onready var return_button = $"../Control2/Return_button" as Button
 
 var currentTileMapIndex : int
 
@@ -21,6 +22,7 @@ func _ready():
 			for n in node.get_children():
 				node.remove_child(n)
 	level = 1
+	return_button.button_down.connect(on_return_pressed)
 	pass # Replace with function body.
 
 
@@ -31,6 +33,9 @@ func _process(delta):
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
+
+func on_return_pressed() -> void:
+	get_tree().change_scene_to_file("res://mainmenu/main_menu.tscn")
 
 func nextLevel():
 	currentTileMapIndex+=1

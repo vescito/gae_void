@@ -237,7 +237,6 @@ size = Vector2(925, 20)
 size = Vector2(132, 142)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_apmxl"]
-load_path = "res://.godot/imported/DeathCaveExplorer-Sheet.png-8de531c01981ee3803b91e5abfc887f8.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mpjl"]
 atlas = SubResource("CompressedTexture2D_apmxl")
@@ -296,7 +295,6 @@ atlas = SubResource("CompressedTexture2D_apmxl")
 region = Rect2(624, 0, 48, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0lrdr"]
-load_path = "res://.godot/imported/HurtCaveExplorer-Sheet.png-f0346accf2076fd0479a4c632040572f.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lctkq"]
 atlas = SubResource("CompressedTexture2D_0lrdr")
@@ -319,7 +317,6 @@ atlas = SubResource("CompressedTexture2D_0lrdr")
 region = Rect2(192, 0, 48, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0m8yg"]
-load_path = "res://.godot/imported/IdleCaveExplorer-Sheet.png-46f58d228772306c3dce5c015d6a4b73.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wat3d"]
 atlas = SubResource("CompressedTexture2D_0m8yg")
@@ -362,7 +359,6 @@ atlas = SubResource("CompressedTexture2D_0m8yg")
 region = Rect2(432, 0, 48, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ue7x"]
-load_path = "res://.godot/imported/WalkingCaveExplorer-Sheet.png-338a6139cad53a161e87be082a3b0942.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydcci"]
 atlas = SubResource("CompressedTexture2D_3ue7x")
@@ -991,6 +987,7 @@ offset_bottom = 40.0
 
 [node name="LevelText" type="Label" parent="Control2"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 24.0
 offset_top = 560.0
 offset_right = 221.0
@@ -999,6 +996,7 @@ theme_override_font_sizes/font_size = 50
 text = "LEVEL: 1"
 
 [node name="RestartButton" type="Button" parent="Control2"]
+layout_mode = 0
 offset_left = 992.0
 offset_top = 576.0
 offset_right = 1126.0
@@ -1006,9 +1004,19 @@ offset_bottom = 626.0
 theme_override_font_sizes/font_size = 30
 text = "RESTART"
 
+[node name="Return_button" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 581.0
+offset_right = 700.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 30
+text = "Return to Menu"
+
 [node name="GameOverLabel" type="Label" parent="Control2"]
 unique_name_in_owner = true
 visible = false
+layout_mode = 0
 offset_left = 344.0
 offset_top = 264.0
 offset_right = 804.0
@@ -1050,3 +1058,4 @@ text = "GAME OVER"
 [connection signal="body_entered" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" method="_on_crossing_body_entered"]
 [connection signal="takeTurn" from="Connectors/Area3/Line2D6/CROSS_3_4_N1/Crossing7" to="CharacterBody2D" method="_on_crossing_take_turn"]
 [connection signal="pressed" from="Control2/RestartButton" to="Mechanics" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control2/Return_button" to="Mechanics" method="_on_restart_button_pressed"]
