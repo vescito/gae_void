@@ -107,6 +107,7 @@ func gameOver():
 		speed = 0
 		%GameOverLabel.visible = true
 		print("GAME OVER")
+		$"../Control/AudioStreamPlayer2D2".play()
 
 func shuffleFinished():
 	#var colliders = [$"../Main Lines/LINIE_1/Finish_1/CollisionShape2D", $"../Main Lines/LINIE_2/Finish_2/CollisionShape2D", $"../Main Lines/LINIE_3/Finish_3/CollisionShape2D", $"../Main Lines/LINIE_4/Finish_4/CollisionShape2D"]
